@@ -6,7 +6,6 @@ import router from "./router/router";
 
 createApp(App).use(store).mount("#app");
 
-
 const app = createApp(App);
 
 app.use(router);

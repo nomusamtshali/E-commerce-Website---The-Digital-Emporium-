@@ -3,14 +3,42 @@
   import Error from './Error.vue';
   import DetailSkeleton from './DetailSkeleton.vue';
   import { useRoute } from 'vue-router';
+
+  /**
+ * @typedef {Object} Product
+ * @property {number} id - The unique identifier of the product
+ * @property {string} title - The title of the product
+ * @property {number} price - The price of the product
+ * @property {string} description - The description of the product
+ * @property {string} category - The category of the product
+ * @property {string} image - The URL of the product image
+ * @property {Object} rating - The rating information of the product
+ * @property {number} rating.rate - The average rating of the product
+ * @property {number} rating.count - The number of ratings for the product
+ */
   
   const route = useRoute();
+
+  /** @type {import('vue').Ref<Product>} */
   const product = ref({});
+
+  /** @type {import('vue').Ref<string|null>} */
   const error = ref(null);
+
+  /** @type {import('vue').Ref<boolean>} */
   const loading = ref(false);
+
+  /** @type {string|string[]} */
   const id = route.params.id;
   
-  // Fetches product details from the API based on the provided productId.
+  
+/**
+ * Fetches product details from the API based on the provided productId.
+ * @async
+ * @function getProductDetails
+ * @param {string|number} productId - The ID of the product to fetch
+ * @returns {Promise<{response: Product|null, error: string|null}>} The product data or error message
+ */
   async function getProductDetails(productId) {
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${productId}`);

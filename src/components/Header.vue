@@ -1,8 +1,16 @@
 <script setup>
 import { ref } from "vue";
 
+/**
+ * reactive reference to control the visibility of the navbar.
+ * @type {import('vue').Ref<boolean>}
+ */
 const isNavbarHidden = ref(true);
 
+/**
+ * Toggles the visibility of the navbar.
+ * @function
+ */
 const toggleNavbar = () => {
   isNavbarHidden.value = !isNavbarHidden.value;
 };

@@ -5,15 +5,45 @@
   import ProductFilter from './ProductFilter.vue';
   import ProductSort from './ProductSort.vue';
   
+  /**
+ * @typedef {Object} Product
+ * @property {number} id - The unique identifier of the product
+ * @property {string} title - The title of the product
+ * @property {number} price - The price of the product
+ * @property {string} category - The category of the product
+ * @property {string} image - The URL of the product image
+ * @property {Object} rating - The rating information of the product
+ * @property {number} rating.rate - The average rating of the product
+ * @property {number} rating.count - The number of ratings for the product
+ */
+
+ /** @type {import('vue').Ref<Product[]>} */
   const products = ref([]);
+
+  /** @type {import('vue').Ref<Product[]>} */
   const filteredProducts = ref([]);
+
+  /** @type {import('vue').Ref<boolean>} */
   const loading = ref(true);
+
+  /** @type {import('vue').Ref<string|null>} */
   const error = ref(null);
+
+  /** @type {import('vue').Ref<string[]>} */
   const categories = ref([]);
+
+  /** @type {import('vue').Ref<string>} */
   const selectedCategory = ref('');
+
+  /** @type {import('vue').Ref<string>} */
   const selectedSort = ref('default');
   
-  // Fetches and processes product data from the API
+  /**
+ * Fetches and processes product data from the API  
+ * @async
+ * @function getProducts
+ * @throws {Error} When the API request fails
+ */
   async function getProducts() {
     try {
       let response = await fetch('https://fakestoreapi.com/products');
@@ -31,7 +61,13 @@
     }
   }
   
-  // Fetches and processes product data for a specific category from the API.
+  /**
+ * Fetches and processes product data for a specific category from the API.
+ * @async
+ * @function getProductsByCategory
+ * @param {string} category - The category to fetch products for
+ * @throws {Error} When the API request fails
+ */
   async function getProductsByCategory(category) {
     try {
       loading.value = true;
@@ -47,7 +83,11 @@
     }
   }
   
-  // Handles the change of selected category.
+  /**
+ * Handles the change of selected category.
+ * @function handleCategoryChange
+ * @param {string} category - The newly selected category
+ */
   function handleCategoryChange(category) {
     selectedCategory.value = category;
     if (selectedCategory.value) {
@@ -57,7 +97,11 @@
     }
   }
   
-  // Sorts the products based on the selected option.
+  /**
+ * Sorts the products based on the selected option.
+ * @function sortProducts
+ * @param {string} option - The sorting option ('lowToHigh', 'highToLow', or 'default')
+ */
   function sortProducts(option) {
     selectedSort.value = option;
     if (option === 'lowToHigh') {
@@ -69,7 +113,11 @@
     }
   }
   
-  // Handles the change of sorting option.
+  /**
+ * Handles the change of sorting option.
+ * @function handleSort
+ * @param {string} option - The new sorting option
+ */
   function handleSort(option) {
     sortProducts(option);
   }

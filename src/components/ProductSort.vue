@@ -1,12 +1,20 @@
 <script setup>
  import { defineProps } from 'vue';
-  // import { ref } from 'vue';
-  // import { useStore } from 'vuex';
+
+ /**
+ * @typedef {Object} Props
+ * @property {Function} onSortChange - Callback function for sort change
+ */
   
+ /**
+ * @type {Props}
+ */
   const props = defineProps({onSortChange: {type: Function, required: true}})
-  // const store = useStore();
-  // const selectedSort = ref('default');
   
+  /**
+ * Handles the change of sorting option
+ * @param {Event} event - The change event
+ */
   const handleSort = (event) => {
     props.onSortChange (event.target.value);
   };

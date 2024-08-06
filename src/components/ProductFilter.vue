@@ -1,7 +1,18 @@
 <script setup>
   import { ref, onMounted, watchEffect } from 'vue';
   import { storeToRefs } from 'pinia';
+
+  /**
+ * @typedef {Object} Props
+ * @property {Array} [categories=[]] - List of available categories
+ * @property {string} [selectedCategory=''] - Currently selected category
+ * @property {string} [searchTerm=''] - Current search term
+ * @property {Function} [onCategoryChange=()=>{}] - Callback function for category change
+ */
   
+ /**
+ * @type {Props}
+ */
   const props = defineProps({
     categories: {type: Array, default: () =>{}},
     selectedCategory: {type: String, default: ''}, 
@@ -9,31 +20,42 @@
     onCategoryChange: {type: Function, default: () => {}}
   })
 
+  /** @type {import('vue').Ref<string>} */
   const selectedCategory = ref(props.selectedCategory);
+
+  /** @type {import('vue').Ref<string>} */
   const searchTerm = ref(props.searchTerm);
+
+
+/** @type {import('pinia').StoreToRefs} */
   const store = storeToRefs();
 
+
+// Watch for changes in props and update local refs
   watchEffect(() => {
     selectedCategory.value = props.selectedCategory
     searchTerm.value = props.searchTerm;
   })
   
-  // const { filterItem, searchTerm: storeSearchTerm, categories: storeCategories } = store.state.productStore;
-  
-  // Update local state from store
-  // onMounted(async () => {
-  //   await store.dispatch('productStore/fetchCategories');
-  //   categories.value = storeCategories;
-  // });
-  
+  /**
+ * Sets the search term in the store
+ * @param {string} term - The search term to set
+ */
   const setSearchTerm = (term) => {
     store.dispatch('productStore/setSearchTerm', term);
   };
   
+  /**
+ * Handles the change of category
+ * @param {Event} event - The change event
+ */
   const handleChange = (event) => {
     props.onCategoryChange(event.target.value);
   };
   
+  /**
+ * Handles the form submission
+ */
   const handleSubmit = () => {
     store.dispatch('productStore/fetchProducts');
   };
