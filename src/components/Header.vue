@@ -14,7 +14,7 @@ const toggleNavbar = () => {
       <div
         class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
       >
-        <router-link to="/">
+        <a href="/">
           <button class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/online-shop.png" class="h-8" alt="Flowbite Logo" />
             <span
@@ -22,7 +22,7 @@ const toggleNavbar = () => {
               >SwiftCart</span
             >
           </button>
-        </router-link>
+        </a>
         <button
           @click="toggleNavbar"
           data-collapse-toggle="navbar-default"
@@ -58,15 +58,14 @@ const toggleNavbar = () => {
             class="flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0"
           >
             <li>
-              <router-link
-                to="/wishlist"
+              <a href = "/wishlist"
                 class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Wishlist
-              </router-link>
+              </a>
             </li>
             <li class="hidden lg:block md:block relative">
-              <router-link to="/cart">
+              <a href ="/cart">
                 <div class="t-0 absolute left-3 -top-4">
                   <p
                     class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
@@ -88,23 +87,21 @@ const toggleNavbar = () => {
                     d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                   />
                 </svg>
-              </router-link>
+              </a>
             </li>
             <li>
-              <router-link
-                to="/cart"
+              <a href ="/cart"
                 class="lg:hidden md:hidden py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Cart
-              </router-link>
+              </a>
             </li>
             <li>
-              <router-link
-                to="/login"
+              <a href="/login"
                 class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
               >
                 Login
-              </router-link>
+              </a >
             </li>
           </ul>
         </div>
